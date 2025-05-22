@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Attendance & Leave</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Header (top bar) -->
+<header class="bg-light border-bottom py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <!-- Left section -->
+        <div>
+            <h1 class="h4 mb-1 text-primary" id="header_left">Attendance & Leave</h1>
+            <p class="mb-0 text-secondary" id="current-date"></p>
+        </div>
+
+        <!-- Right section -->
+        <div class="d-flex align-items-center gap-3">
+            <span id="logged-in-user" class="fw-semibold">Admin</span>
+            <button id="logout-btn" class="btn btn-outline-secondary btn-sm">Logout</button>
+        </div>
+    </div>
+</header>
+
+<!-- Main layout -->
+<main class="container-fluid">
+    <div class="row min-vh-100">
+        <!-- Sidebar -->
+        <aside class="col-md-3 col-lg-2 bg-light p-3 text-info">
+            <nav class="nav flex-column">
+                <a class="nav-link text-secondary active" href="index.html" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+                <a class="nav-link text-secondary" href="employees.html" data-section="employees">
+                    <i class="fas fa-users me-2"></i> Employees
+                </a>
+                <a class="nav-link text-secondary" href="attendance.html" data-section="attendance">
+                    <i class="fas fa-calendar-check me-2"></i> Attendance
+                </a>
+                <a class="nav-link text-secondary" href="leave.html" data-section="leave">
+                    <i class="fas fa-calendar-minus me-2"></i> Leave Management
+                </a>
+                <a class="nav-link text-secondary" href="reports.html" data-section="reports">
+                    <i class="fas fa-chart-bar me-2"></i> Reports
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="col-md-9 col-lg-10 p-0"> <!-- Removed bg-light and adjusted padding -->
+            <div class="main-content-container h-100 p-4"> <!-- New container for the darker border -->
+                <section id="employees-section" class="content-section">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white border-bottom-0 pb-0">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h2 class="h5 mb-0">Employee Management</h2>
+                                <div class="d-flex">
+                                    <button id="add-employee-btn" class="btn btn-primary me-2">
+                                        <i class="fas fa-plus me-1"></i> Add Employee
+                                    </button>
+                                    <div class="input-group" style="width: 250px;">
+                                        <input type="text" id="employee-search" class="form-control" placeholder="Search employees...">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Employee Form (Hidden by default) -->
+                        <div id="employee-form-container" class="card-body border-bottom d-none">
+                            <form id="employee-form" class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="emp-id" class="form-label">Employee ID*</label>
+                                    <input type="text" class="form-control" id="emp-id" required>
+                                    <div class="invalid-feedback" id="emp-id-error"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="emp-name" class="form-label">Full Name*</label>
+                                    <input type="text" class="form-control" id="emp-name" required>
+                                    <div class="invalid-feedback" id="emp-name-error"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="emp-email" class="form-label">Email*</label>
+                                    <input type="email" class="form-control" id="emp-email" required>
+                                    <div class="invalid-feedback" id="emp-email-error"></div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="emp-dept" class="form-label">Department*</label>
+                                    <input class="form-control" list="dept-list" id="emp-dept" required>
+                                    <datalist id="dept-list">
+                                        <option value="Human Resources">
+                                        <option value="Finance">
+                                        <option value="IT">
+                                        <option value="Marketing">
+                                        <option value="Operations">
+                                    </datalist>
+                                    <div class="invalid-feedback" id="emp-dept-error"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="emp-position" class="form-label">Position*</label>
+                                    <input type="text" class="form-control" id="emp-position" required>
+                                    <div class="invalid-feedback" id="emp-position-error"></div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="emp-status" class="form-label">Status*</label>
+                                    <select class="form-select" id="emp-status" required>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="On Leave">On Leave</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button type="button" id="cancel-employee-btn" class="btn btn-outline-secondary me-2">Cancel</button>
+                                    <button type="submit" id="save-employee-btn" class="btn btn-primary">Save Employee</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Employee Table -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th class="align-middle">ID <i class="fas fa-sort ms-1" data-sort="_id"></i></th>
+                                        <th class="align-middle">Name <i class="fas fa-sort ms-1" data-sort="name"></i></th>
+                                        <th class="align-middle">Email <i class="fas fa-sort ms-1" data-sort="email"></i></th>
+                                        <th class="align-middle">Department <i class="fas fa-sort ms-1" data-sort="department"></i></th>
+                                        <th class="align-middle">Position <i class="fas fa-sort ms-1" data-sort="position"></i></th>
+                                        <th class="align-middle">Status <i class="fas fa-sort ms-1" data-sort="status"></i></th>
+                                        <th class="align-middle text-end">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="employees-table-body">
+                                    <!-- Table rows will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script src="empScript.js"></script>
+</body>
+</html>

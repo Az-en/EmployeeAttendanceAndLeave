@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Attendance & Leave</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #content{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Header (top bar) -->
+<header class="bg-light border-bottom py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <!-- Left section -->
+        <div>
+            <h1 class="h4 mb-1 text-primary" id="header_left">Attendance & Leave</h1>
+            <p class="mb-0 text-secondary" id="current-date"></p>
+        </div>
+
+        <!-- Right section -->
+        <div class="d-flex align-items-center gap-3">
+            <span id="logged-in-user" class="fw-semibold">Admin</span>
+            <button id="logout-btn" class="btn btn-outline-secondary btn-sm">Logout</button>
+        </div>
+    </div>
+</header>
+
+<!-- Main layout -->
+<main class="container-fluid">
+    <div class="row min-vh-100">
+        <!-- Sidebar -->
+        <aside class="col-md-3 col-lg-2 bg-light p-3 text-info">
+            <nav class="nav flex-column">
+                <a class="nav-link text-secondary active" href="index.html" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+                <a class="nav-link text-secondary" href="employees.html" data-section="employees">
+                    <i class="fas fa-users me-2"></i> Employees
+                </a>
+                <a class="nav-link text-secondary" href="attendance.html" data-section="attendance">
+                    <i class="fas fa-calendar-check me-2"></i> Attendance
+                </a>
+                <a class="nav-link text-secondary" href="leave.html" data-section="leave">
+                    <i class="fas fa-calendar-minus me-2"></i> Leave Management
+                </a>
+                <a class="nav-link text-secondary" href="reports.html" data-section="reports">
+                    <i class="fas fa-chart-bar me-2"></i> Reports
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="col-md-9 col-lg-10 p-0"> <!-- Removed bg-light and adjusted padding -->
+            <div class="main-content-container h-100 p-4"> <!-- New container for the darker border -->
+                <section id="dashboard-section" class="content-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="mb-0">Attendance view</h2>
+                        <select id="dashboard-period" class="form-select w-auto">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+
+                    <!-- Content Goes Here -->
+                    <div class="card shadow-sm p-3" id="content">
+                        <section id="attendance-section" class="content-section">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-white border-bottom-0">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h2 class="h5 mb-0">Attendance Tracking</h2>
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-3">
+                                                <input type="date" class="form-control" id="attendance-date">
+                                            </div>
+                                            <div class="input-group" style="width: 200px;">
+                                                <input type="text" class="form-control" id="attendance-search" placeholder="Search...">
+                                                <button class="btn btn-outline-secondary" type="button">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mb-0" id="attendance-table">
+                                            <thead class="table-light">
+                                            <tr>
+                                                <th class="align-middle">Employee ID</th>
+                                                <th class="align-middle">Name</th>
+                                                <th class="align-middle">Department</th>
+                                                <th class="align-middle">Status</th>
+                                                <th class="align-middle">Check-in</th>
+                                                <th class="align-middle">Check-out</th>
+                                                <th class="align-middle text-end">Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="attendance-table-body">
+                                            <!-- Table data will be populated by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script src="attScript.js"></script>
+</body>
+</html>

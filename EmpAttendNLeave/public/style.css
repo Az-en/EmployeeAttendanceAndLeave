@@ -1,0 +1,84 @@
+:root {
+    --white: #ffffff;
+    --border-radius: 0.35rem;
+    --box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    --transition: all 0.3s ease-in-out;
+}
+.stat-card-custom {
+    background-color: var(--white) !important;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+.stat-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.stat-card-custom {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+.stat-card-custom .stat-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+.stat-card-custom .card-body {
+    display: flex;
+    align-items: center;
+}
+.nav-link.text-secondary {
+    border-left: 4px solid transparent;
+    padding-left: 12px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+.nav-link.text-secondary:hover {
+    color: #0a58ca !important;
+    border-left-color: #0a58ca !important;
+    cursor: pointer;
+    background-color: rgba(78, 115, 223, 0.1);
+}
+.nav-link.text-secondary:hover i {
+    color: #0a58ca !important;
+    transition: color 0.3s ease;
+}
+aside {
+    background-color: #dedede;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+/* New styles for the darker separation */
+header.bg-light {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+}
+
+/* Main container with darker top border */
+.main-content-container {
+    border-top: 8px solid #e9ecef; /* Darker padding region */
+    background-color: #ffffff !important;
+}
+
+/* Adjust the main content padding */
+.col-md-9.col-lg-10 {
+    padding-top: 0 !important; /* Remove top padding to let the border show */
+    padding-left: 0 !important; /* Remove top padding to let the border show */
+}
+
+/* Sidebar adjustments */
+aside.bg-light {
+    background-color: #f8f9fa !important;
+    border-top: 8px solid #e9ecef !important; /* Match the main content */
+}
+
