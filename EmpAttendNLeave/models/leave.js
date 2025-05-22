@@ -12,6 +12,6 @@ const leaveSchema = new Schema({
     status: { type: String, enum: ['Pending', 'Approved', 'Rejected'], default: 'Pending' },
 }, { timestamps: true });
 
-const Leave = mongoose.model('Leave', leaveSchema);
+// const Leave = mongoose.model('Leave', leaveSchema);
 
 module.exports = mongoose.model('Leave', leaveSchema,'leave_requests');

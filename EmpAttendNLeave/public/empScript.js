@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded',function (){
                 else if (status.includes('leave')) badgeClass = 'bg-warning';
 
                 row.innerHTML = `
-                <td class="align-middle">${String(employee._id).padStart(3, '0')}</td>
+                <td class="align-middle">${String(employee._id)}</td>
                 <td class="align-middle">${employee.name}</td>
                 <td class="align-middle">${employee.email}</td>
                 <td class="align-middle">${employee.department}</td>

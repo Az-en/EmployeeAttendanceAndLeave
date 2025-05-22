@@ -48,23 +48,73 @@
                 <a class="nav-link text-secondary" href="leave.html" data-section="leave">
                     <i class="fas fa-calendar-minus me-2"></i> Leave Management
                 </a>
-                <a class="nav-link text-secondary" href="reports.html" data-section="reports">
-                    <i class="fas fa-chart-bar me-2"></i> Reports
-                </a>
             </nav>
         </aside>
 
         <!-- Main Content Area -->
-        <div class="col-md-9 col-lg-10 p-0"> <!-- Removed bg-light and adjusted padding -->
+        <div class="col-md-9 col-lg-10 p-0">
             <div class="main-content-container h-100 p-4"> <!-- New container for the darker border -->
                 <section id="dashboard-section" class="content-section">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h2 class="mb-0">Attendance view</h2>
-                        <select id="dashboard-period" class="form-select w-auto">
-                            <option value="today">Today</option>
-                            <option value="week">This Week</option>
-                            <option value="month">This Month</option>
-                        </select>
+
+                        <div class="d-flex align-items-center gap-2">
+                            <select id="dashboard-period" class="form-select w-auto">
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                            <button id="add-attendance-btn" class="btn btn-primary">
+                                <i class="fas fa-plus me-1"></i> Add Attendance
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="attendance-form-container" class="card-body border-bottom d-none">
+                        <form id="attendance-form" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="att-emp-id" class="form-label">Attendance ID*</label>
+                                <input type="number" class="form-control" id="att-att-id" required>
+                                <div class="invalid-feedback" id="att-att-id-error"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="att-emp-id" class="form-label">Employee ID*</label>
+                                <input type="number" class="form-control" id="att-emp-id" required>
+                                <div class="invalid-feedback" id="att-emp-id-error"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="att-date" class="form-label">Date*</label>
+                                <input type="date" class="form-control" id="att-date" required>
+                                <div class="invalid-feedback" id="att-date-error"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="att-status" class="form-label">Status*</label>
+                                <select class="form-select" id="att-status" required>
+                                    <option value="">Select status</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Absent">Absent</option>
+                                    <option value="Leave">Leave</option>
+                                </select>
+                                <div class="invalid-feedback" id="att-status-error"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="att-check-in" class="form-label">Check-In Time</label>
+                                <input type="time" class="form-control" id="att-check-in">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="att-check-out" class="form-label">Check-Out Time</label>
+                                <input type="time" class="form-control" id="att-check-out">
+                            </div>
+
+                            <div class="col-12 text-end">
+                                <button type="button" id="cancel-attendance-btn" class="btn btn-outline-secondary me-2">Cancel</button>
+                                <button type="submit" id="save-attendance-btn" class="btn btn-primary">Save Attendance</button>
+                            </div>
+                        </form>
                     </div>
 
                     <!-- Content Goes Here -->
@@ -93,9 +143,11 @@
                                         <table class="table table-hover mb-0" id="attendance-table">
                                             <thead class="table-light">
                                             <tr>
+                                                <th class="align-middle">Attendance ID</th>
                                                 <th class="align-middle">Employee ID</th>
                                                 <th class="align-middle">Name</th>
                                                 <th class="align-middle">Department</th>
+                                                <th class="align-middle">Date</th>
                                                 <th class="align-middle">Status</th>
                                                 <th class="align-middle">Check-in</th>
                                                 <th class="align-middle">Check-out</th>

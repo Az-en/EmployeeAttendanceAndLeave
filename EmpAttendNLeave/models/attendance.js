@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const attendanceSchema = new Schema({
-    _id: { type: Number, required: true },  // Using Number as ID
+    _id: { type: Number, required: false },  // Using Number as ID
     employeeId: { type: Number, required: true },
     date: { type: Date, required: true },
     checkIn: { type: String, default: null },
